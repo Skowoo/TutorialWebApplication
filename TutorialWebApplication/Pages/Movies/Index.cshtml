@@ -7,6 +7,17 @@
 
 <h1>Index</h1>
 
+<form>
+    <p>
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+
+        <select asp-for="MovieGenre" asp-items="Model.Genres">
+            <option value="">All</option>
+        </select>
+    </p>
+</form>
+
 <p>
     <a asp-page="Create">Create New</a>
 </p>
