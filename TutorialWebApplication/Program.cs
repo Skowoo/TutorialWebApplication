@@ -1,3 +1,6 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using TutorialWebApplication.Data;
 namespace TutorialWebApplication
 {
     public class Program
@@ -5,6 +8,8 @@ namespace TutorialWebApplication
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<TutorialWebApplicationContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("TutorialWebApplicationContext") ?? throw new InvalidOperationException("Connection string 'TutorialWebApplicationContext' not found.")));
 
             // Add services to the container.
             builder.Services.AddRazorPages();
@@ -24,7 +29,7 @@ namespace TutorialWebApplication
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.MapRazorPages();
 
